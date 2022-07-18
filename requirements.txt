@@ -1,0 +1,2 @@
+pyexiftool==0.5.3
+moviepy==1.0.3
