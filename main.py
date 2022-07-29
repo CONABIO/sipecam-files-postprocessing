@@ -40,6 +40,9 @@ try:
     if not os.path.exists(dir_path):
         dir_path = str(pathlib.Path(__file__).parent.resolve())
         print("The given path does not exists, defaulting to %s" % dir_path)
+    
+    # file to check the log of the files with missing metadata
+    file_log = sys.argv[2]
 except:
     dir_path = str(pathlib.Path(__file__).parent.resolve())
     print("No dir path was provided, defaulting to %s" % dir_path)
@@ -72,9 +75,21 @@ if file_exists(log_file):
 
     files_in_dir = tmp_list
 
-total_files = len(files_in_dir)
+bad_files = []
+bad_file_log = "bad_files/" + file_log
+if file_exists(bad_file_log):
+    with open(bad_file_log, 'r') as f:
+        bad_lines = [line.replace('\n','') for line in f]
 
-for idx, file_to_process in enumerate(files_in_dir):
+    bad_files = [x for x in bad_lines if any(file_type in x for file_type in FILE_PATTERNS)]
+
+
+# we filter out bad files
+files_to_process = [f for f in files_in_dir if f not in bad_files]
+
+total_files = len(files_to_process)
+
+for idx, file_to_process in enumerate(files_to_process):
 
     print("Processing file %d of %d" % (idx + 1, total_files) )
 
