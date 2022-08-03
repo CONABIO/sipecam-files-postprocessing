@@ -75,17 +75,18 @@ if file_exists(log_file):
 
     files_in_dir = tmp_list
 
+print("Total files: %d" % len(files_in_dir))
+
 bad_files = []
 bad_file_log = "bad_files/" + file_log
 if file_exists(bad_file_log):
     with open(bad_file_log, 'r') as f:
-        bad_lines = [line.replace('\n','') for line in f]
-
-    bad_files = [x for x in bad_lines if any(file_type in x for file_type in FILE_PATTERNS)]
-
+        bad_files = [line.replace('\n','') for line in f]
 
 # we filter out bad files
-files_to_process = [f for f in files_in_dir if f not in bad_files]
+files_to_process = [f for f in files_in_dir if f.replace("/" + f.split("/")[len(f.split("/")) - 1], '') not in bad_files]
+
+print("Total filtered files: %d" % len(files_to_process))
 
 total_files = len(files_to_process)
 
