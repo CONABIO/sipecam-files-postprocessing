@@ -1,2 +1,3 @@
 from .hide_coordinates import hide_coordinates
 from .video_conversion import convert_video
+from .check_files_metadata import check_files_metadata
