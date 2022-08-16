@@ -139,11 +139,11 @@ def check_files_metadata(path_to_files, recursive):
     dirs_with_data = check_log_file(json_in_dir,path_to_files)
 
     
-    log_file_dirs = "logs/dirs_with_missing_metadata_" + dt.datetime.now().strftime("%Y-%m-%d-%H-%M-%S") + '.txt'
+    log_file_dirs = "logs/metadata/dirs_with_missing_metadata_" + dt.datetime.now().strftime("%Y-%m-%d-%H-%M-%S") + '.txt'
 
-    dirs_no_json = "logs/dirs_with_no_json_" + dt.datetime.now().strftime("%Y-%m-%d") + '.txt'
+    dirs_no_json = "logs/metadata/dirs_with_no_json_" + dt.datetime.now().strftime("%Y-%m-%d") + '.txt'
 
-    file_with_missing = "logs/files_with_missing_metadata_" + dt.datetime.now().strftime("%Y-%m-%d") + '.txt'
+    file_with_missing = "logs/metadata/files_with_missing_metadata_" + dt.datetime.now().strftime("%Y-%m-%d") + '.txt'
 
     try:
         bad_files = []
@@ -160,6 +160,7 @@ def check_files_metadata(path_to_files, recursive):
             )
 
             found_bad_file = False
+            print(d,len(files_in_dir))
             if latest_json_file: 
                 for f in files_in_dir:
 
