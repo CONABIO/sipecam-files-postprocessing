@@ -45,13 +45,13 @@ def search_for_log_file():
 
     logs_in_dir = list(
         itertools.chain.from_iterable(
-            glob.iglob("./logs/*" + pattern, recursive=False)
+            glob.iglob("./logs/metadata/*" + pattern, recursive=False)
             for pattern in [".txt"]
         )
     )
 
     # filter file logs for current path
-    get_log_files_for_dir = [j for j in logs_in_dir if j.replace("./logs/",'').startswith('dirs_with_missing_metadata_')]
+    get_log_files_for_dir = [j for j in logs_in_dir if j.replace("./logs/metadata",'').startswith('dirs_with_missing_metadata_')]
 
     # init latest date and log file url
     latest_log_file = ''
