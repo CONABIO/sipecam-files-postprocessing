@@ -142,7 +142,7 @@ def main():
 
     bad_files = []
     if len(file_log) > 0:
-        bad_file_log = "log/metadata/" + file_log
+        bad_file_log = "logs/metadata/" + file_log
         if file_exists(bad_file_log):
             with open(bad_file_log, 'r') as f:
                 bad_files = [line.replace('\n','') for line in f]
