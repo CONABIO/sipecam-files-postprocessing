@@ -1,5 +1,6 @@
 import json
 import exiftool
+import traceback
 
 
 TAGS_FOR_GPS_COMPOSITE = {
@@ -98,7 +99,8 @@ def hide_coordinates(f,json_file):
             
             return extract_gps(f)
     
-    except:
-        print("Error extracting/setting coordinates in file metadata")
+    except Exception as e:
+        print(traceback.format_exc())
+        print("Error extracting/setting coordinates in file metadata, error: ", e)
 
         return False
