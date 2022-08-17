@@ -141,10 +141,11 @@ def main():
     print("Total files: %d" % len(files_in_dir))
 
     bad_files = []
-    bad_file_log = "bad_files/" + file_log
-    if file_exists(bad_file_log):
-        with open(bad_file_log, 'r') as f:
-            bad_files = [line.replace('\n','') for line in f]
+    if len(file_log) > 0:
+        bad_file_log = "log/metadata/" + file_log
+        if file_exists(bad_file_log):
+            with open(bad_file_log, 'r') as f:
+                bad_files = [line.replace('\n','') for line in f]
 
     # we filter out bad files
     files_to_process = [f for f in files_in_dir if f.replace("/" + f.split("/")[len(f.split("/")) - 1], '') not in bad_files]
