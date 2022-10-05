@@ -97,7 +97,10 @@ def search_for_json_file(files_in_dir,directory):
             date_of_file = name_of_file.split("_")[len(name_of_file.split("_")) - 1]
 
             # parse it to a datetime object
-            date = dt.datetime.strptime(date_of_file.replace(".json",''), '%d-%m-%Y')
+            try:
+                date = dt.datetime.strptime(date_of_file.replace(".json",''), '%d-%m-%Y')
+            except:
+                date = dt.datetime.strptime(date_of_file.replace(".json",''), '%Y-%m-%d-%H-%M-%S')
 
             # check if date is the latest date
             if latest_date and latest_date < date:
