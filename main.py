@@ -179,7 +179,10 @@ def main():
                 date_of_file = json_file_name.split("_")[len(json_file_name.split("_")) - 1]
 
                 # parse it to a datetime object
-                date = datetime.strptime(date_of_file.replace(".json",''), '%d-%m-%Y')
+                try:
+                    date = datetime.strptime(date_of_file.replace(".json",''), '%d-%m-%Y')
+                except:
+                    date = datetime.strptime(date_of_file.replace(".json",''), '%Y-%m-%d-%H-%M-%S')
 
                 # check if date is the latest date
                 if latest_date and latest_date < date:
